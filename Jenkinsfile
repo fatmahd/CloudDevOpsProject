@@ -42,7 +42,7 @@ pipeline {
 
         stage('Scan Docker Image') {
             when {
-                changeset "**/*"
+                expression { return true }
             }
             steps {
                 script {
@@ -53,7 +53,7 @@ pipeline {
 
         stage('Push Docker Image') {
             when {
-                changeset "**/*"
+                expression { return true }
             }
             steps {
                 script {
@@ -64,7 +64,7 @@ pipeline {
 
         stage('Delete Local Docker Image') {
             when {
-                changeset "**/*"
+                expression { return true }
             }
             steps {
                 script {
@@ -75,7 +75,7 @@ pipeline {
 
         stage('Update K8s Manifests') {
             when {
-                changeset "**/*"
+                expression { return true }
             }
             steps {
                 script {
@@ -86,7 +86,7 @@ pipeline {
 
         stage('Push Manifests') {
             when {
-                changeset "**/*"
+                expression { return true }
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
@@ -108,7 +108,7 @@ pipeline {
 
         stage('Test Image') {
             when {
-                changeset "**/*"
+                expression { return true }
             }
             steps {
                 sh 'echo "Image tested successfully."'
