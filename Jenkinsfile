@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     def author = sh(script: "git log -1 --pretty=%an", returnStdout: true).trim()
-                    if (author == "Jenkins CI") {
+                    if (author == "Jenkins CI") { // تأكد ان ده نفس الـuser.name اللي بتستخدمه في git config
                         currentBuild.result = 'NOT_BUILT'
                         error("Skipping build triggered by Jenkins auto commit.")
                     }
@@ -32,13 +32,13 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image')
+        stage('Build Docker Image') { // <--- تم إضافة القوس '{' هنا
             steps {
                 script {
                     buildDockerImage(IMAGE_NAME, IMAGE_TAG)
                 }
             }
-        }
+        } // <--- هذا القوس كان زائداً، تم إزالته أو تصحيح مكانه
 
         stage('Scan Docker Image') {
             when {
@@ -114,5 +114,5 @@ pipeline {
                 sh 'echo "Image tested successfully."'
             }
         }
-    }
-}
+    } 
+} 
