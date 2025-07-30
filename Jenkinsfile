@@ -32,10 +32,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            when {
-                changeset "**/*"
-            }
+        stage('Build Docker Image')
             steps {
                 script {
                     buildDockerImage(IMAGE_NAME, IMAGE_TAG)
