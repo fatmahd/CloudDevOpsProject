@@ -1,11 +1,39 @@
-variable "project_name" {}
-variable "subnet_id" {}
-variable "vpc_id" {}
-variable "key_name" {}
-variable "ami_id" {}
-variable "instance_type" {}
+variable "project_name" {
+  description = "اسم المشروع للـtagging."
+  type        = string
+}
 
-variable "private_key_path" {
-  description = "Path to the private key for SSH access"
+variable "key_pair_name" {
+  description = "اسم الـKey Pair للدخول على الـEC2 instances."
+  type        = string
+}
+
+variable "ami_id" {
+  description = "الـAMI ID لإنشاء الـEC2 instances."
+  type        = string
+}
+
+variable "master_instance_type" {
+  description = "نوع الـEC2 instance للـJenkins Master."
+  type        = string
+}
+
+variable "slave_instance_type" {
+  description = "نوع الـEC2 instance للـJenkins Slave."
+  type        = string
+}
+
+variable "vpc_id" {
+  description = "الـID بتاع الـVPC."
+  type        = string
+}
+
+variable "public_subnet_id" {
+  description = "الـID بتاع الـpublic subnet."
+  type        = string
+}
+
+variable "private_subnet_id" {
+  description = "الـID بتاع الـprivate subnet."
   type        = string
 }
