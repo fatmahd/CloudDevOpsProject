@@ -1,7 +1,7 @@
 @Library('shared-lib@main') _
 
 pipeline {
-    agent any
+    agent { label 'jenkins-slave-01' }
 
     triggers {
         githubPush()
